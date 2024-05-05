@@ -24,7 +24,26 @@ class TestApi(unittest.TestCase):
         self.assertEqual(
             response.read().decode(), "3", "ERROR ADD"
         )
+    def test_api_mulpiply(self):
+        url = f"{BASE_URL}/calc/multiply/3/2"
+        response = urlopen(url, timeout=DEFAULT_TIMEOUT)
+        self.assertEqual(
+            response.status, http.client.OK, f"Error en la petición API a {url}"
+        )
+        self.assertEqual(
+            response.read().decode(), "6", "ERROR ADD"
+        )
 
+    def test_api_divide(self):
+        url = f"{BASE_URL}/calc/divide/20/2"
+        response = urlopen(url, timeout=DEFAULT_TIMEOUT)
+        self.assertEqual(
+            response.status, http.client.OK, f"Error en la petición API a {url}"
+        )
+        self.assertEqual(
+            response.read().decode(), "10", "ERROR ADD"
+        )
+    
     def test_api_sqrt(self):
         url = f"{BASE_URL_MOCK}/calc/sqrt/64"
         response = urlopen(url, timeout=DEFAULT_TIMEOUT)
